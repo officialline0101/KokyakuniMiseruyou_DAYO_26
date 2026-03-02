@@ -885,8 +885,8 @@
 
             <div id="treatment-text" style="display: none;"></div>
 
-            <div class="label">【肌力底上げケア　オプション】</div>
-            <div class="info-textkyamenu" id="optionInfoText">各コースに＋13,200円</div>
+            <div class="label" id="optionLabel">【肌力底上げケア　オプション】</div>
+            <div class="info-textkyamenu" id="optionInfoText">各コースに＋4,400円</div>
             <div class="irradiations">
             </div>
 
@@ -1435,6 +1435,7 @@
             // ----------- ★修正箇所：オプションボタンとテキストの書き換え処理 -----------
             const irradiationsContainer = document.querySelector('.irradiations');
             const optionInfoText = document.getElementById('optionInfoText');
+            const optionLabel = document.getElementById('optionLabel');
 
             let optionHtml = '';
             let optionPriceText = '';
@@ -1450,10 +1451,12 @@
             <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="19400">◆シミを増やしたくない！紫外線が強くなる前のシミ予防◆</button>
         `;
                 // 1回目のオプション
-                optionPriceText = '各コースに＋4,400円';
-                optionHtml = `
-            <button type="button" id="celser" onclick="selectirradiations(this, 'treatment13')" data-price="4400">【初回】セルサー・イオン導入コース</button>
-        `;
+                optionPriceText = '';
+                optionHtml = '';
+                
+                if (optionLabel) optionLabel.style.display = 'none';
+                if (optionInfoText) optionInfoText.style.display = 'none';
+                if (irradiationsContainer) irradiationsContainer.style.display = 'none';
 
             } else {
                 // 2回目以降のメニュー（都度払いメインに変更）
@@ -1469,10 +1472,13 @@
             <button type="button" onclick="selectSymptom(this, 'treatment20')" data-price="19400">♦︎シミを増やしたくない！紫外線が強くなる前のシミ予防♦︎</button>
         `;
                 // 2回目以降のオプション
-                optionPriceText = '各コースに＋13,200円';
+                optionPriceText = '各コースに＋4,400円';
                 optionHtml = `
-            <button type="button" id="celser" onclick="selectirradiations(this, 'treatment13')" data-price="13200">セルサー・イオン導入コース</button>
+            <button type="button" id="celser" onclick="selectirradiations(this, 'treatment13')" data-price="4400">【2回目以降】セルサー・イオン導入コース</button>
         `;
+                if (optionLabel) optionLabel.style.display = 'block';
+                if (optionInfoText) optionInfoText.style.display = 'block';
+                if (irradiationsContainer) irradiationsContainer.style.display = 'flex';
             }
 
             // メニューボタンを書き換え
